@@ -69,6 +69,9 @@ You can see [PDF](https://raw.githubusercontent.com/posquit0/Awesome-CV/master/e
 
 **_Note:_ Above services do not guarantee up-to-date source code of Awesome CV**
 
+### Building with TeXstudio (macOS)
+
+Open **`src/resume.tex`** (not the `.cls` file). Set the default compiler to **XeLaTeX**. Install the **fontawesome6** LaTeX package and the **Source Sans 3** and **Roboto** fonts (see below). Press **F5** to build; the PDF is written to `src/resume.pdf**.
 
 ## How to Use
 
