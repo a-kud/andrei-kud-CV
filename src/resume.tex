@@ -17,11 +17,16 @@
 %-------------------------------------------------------------------------------
 % CONFIGURATIONS
 %-------------------------------------------------------------------------------
-% A4 paper size by default, use 'letterpaper' for US letter
+% A4 paper (larger than US Letter: 210×297 mm vs 216×279 mm) — more space for one-page CV
 \documentclass[11pt, a4paper]{awesome-cv}
 
-% Configure page margins with geometry
-\geometry{left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm}
+% Configure page margins with geometry (1cm all sides; ATS-friendly)
+\geometry{left=1cm, top=1cm, right=1cm, bottom=1cm, footskip=0pt}
+
+% Body text black (summary, skills, job descriptions) — overrides template gray
+\definecolor{darktext}{HTML}{000000}
+\definecolor{text}{HTML}{000000}
+\definecolor{graytext}{HTML}{000000}
 
 % Color for highlights
 % Awesome Colors: awesome-emerald, awesome-skyblue, awesome-red, awesome-pink, awesome-orange
@@ -38,8 +43,22 @@
 % \definecolor{lighttext}{HTML}{999999}
 % \definecolor{sectiondivider}{HTML}{5D5D5D}
 
-% Set false if you don't want to highlight section with awesome color
-\setbool{acvSectionColorHighlight}{true}
+% Section headings: same color as body (no red accent) — better for ATS parsing
+\setbool{acvSectionColorHighlight}{false}
+
+% Job location in body text color (black) — consistent for ATS
+\renewcommand*{\entrylocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{text} #1}}
+
+% Smaller name and section headers to save space; section titles in bold font weight
+\renewcommand*{\headerfirstnamestyle}[1]{{\fontsize{22pt}{1em}\headerfontlight\color{graytext} #1}}
+\renewcommand*{\headerlastnamestyle}[1]{{\fontsize{22pt}{1em}\headerfont\bfseries\color{text} #1}}
+% \renewcommand*{\sectionstyleface}[1]{{\fontsize{12pt}{1em}\sffamily\fontseries{b}\selectfont #1}}
+
+% Section spacing: space above section titles (i.e. margin between sections)
+\renewcommand{\acvSectionTopSkip}{-1mm}
+\renewcommand{\acvSectionContentTopSkip}{0.8mm}
+% Spacing between entries within a section (cventry, etc.) — change here for all sections
+\newcommand{\entryskip}{\vspace{-3mm}}
 
 % If you would like to change the social information separator from a pipe (|) to something else
 \renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
@@ -52,7 +71,7 @@
 % Available options: circle|rectangle,edge/noedge,left/right
 % \photo[rectangle,edge,right]{./profile}
 \name{Andrei}{Kudriavtsev}
-\position{Senior Software Engineer}
+% \position{Senior Software Engineer}
 \address{remote, Brazil}
 
 % \mobile{+1 814 300 8059}
@@ -86,13 +105,7 @@
 % Give optional argument to change alignment(C: center, L: left, R: right)
 \makecvheader[C]
 
-% Print the footer with 3 arguments(<left>, <center>, <right>)
-% Leave any of these blank if they are not needed
-\makecvfooter
-  {\today}
-  {Andrei Kudriavtsev~~~·~~~Résumé}
-  {\thepage}
-
+% Footer removed for cleaner layout; no \makecvfooter
 
 %-------------------------------------------------------------------------------
 %	CV/RESUME CONTENT
